@@ -1,13 +1,15 @@
-import { useState } from 'react'
-import './App.css'
+import { Routes, Route } from "react-router-dom";
+import Articles from './components/Articles';
+import Nav from "./components/Nav";
 
 function App() {
 
   return (
     <>
-      <div>
-      <h1>NC News</h1>
-      </div>
+    <Nav />
+    <Routes>
+    <Route path='/' element={<Articles />} />
+    </Routes>
     </>
   )
 }
