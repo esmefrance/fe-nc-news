@@ -5,7 +5,7 @@ function Nav() {
     <div className="navbar bg-accent">
       <div className="flex-1">
         <Link to="/">
-          <a className="btn btn-ghost text-xl"> 🗞️ News 🗞️ </a>
+          <div className="btn btn-ghost text-xl"> 🗞️ News 🗞️ </div>
         </Link>
       </div>
       <div className="flex-none gap-2">
@@ -34,13 +34,13 @@ function Nav() {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
             <li>
-              <a className="justify-between">Profile</a>
+              <div className="justify-between">Profile</div>
             </li>
             <li>
-              <a>Sign in</a>
+              <div>Sign in</div>
             </li>
             <li>
-              <a>Logout</a>
+              <div>Logout</div>
             </li>
           </ul>
         </div>
