@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { getArticles } from "../api";
 import { useNavigate } from "react-router-dom";
 import dateFormat from 'dateformat';
+import Loading from "./Loading";
+
 
 function Articles() {
   const [articleList, setArticleList] = useState([]);
@@ -16,7 +18,7 @@ function Articles() {
   }, []);
 
   if (isLoading) {
-    return <p >Loading... <span className="loading loading-spinner text-primary"></span></p>
+    return <Loading/>
   }
 
   return (
