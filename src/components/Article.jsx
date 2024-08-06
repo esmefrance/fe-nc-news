@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getArticleById } from "../api";
 import dateFormat from 'dateformat';
+import Comments from "./Comments";
+import Loading from "./Loading";
+
 
 
 function Article() {
@@ -18,7 +21,7 @@ function Article() {
   }, []);
 
   if (isLoading) {
-    return <p>Loading...<span className="loading loading-spinner text-primary"></span></p>
+    return <Loading/>
   }
 
   return (
@@ -38,6 +41,9 @@ function Article() {
           </section>
         </article>
       </div>
+      <div>
+      <Comments/>
+    </div>
     </section>
   );
 }
