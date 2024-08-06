@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Articles from './components/Articles';
 import Nav from "./components/Nav";
+import Article from "./components/Article";
 
 function App() {
 
@@ -9,6 +10,7 @@ function App() {
     <Nav />
     <Routes>
     <Route path='/' element={<Articles />} />
+    <Route path= "/:article_id" element={<Article/>}/>
     </Routes>
     </>
   )
