@@ -33,9 +33,9 @@ function Article() {
           <h3>{date}</h3>
           <p>{article.body}</p>
           <section className="card-actions justify-start">
-            <Vote article={article}/>
-            <div className="badge badge-outline"> 🗨️ {article.comment_count} </div>
-          </section>
+            <div className="badge badge-outline gap-2"> 🗨️ {article.comment_count} </div>
+         <Vote article={article} /> 
+         </section>
         </article>
       </div>
       <div>

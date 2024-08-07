@@ -3,6 +3,8 @@ import dateFormat from 'dateformat';
 import { useParams } from "react-router-dom";
 import { getCommentsByArticleId } from "../api";
 import Loading from "./Loading";
+import AddComment from "./AddComment";
+
 function Comments (){
     const [commentList, setCommentList] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -13,12 +15,19 @@ useEffect(() => {
       setIsLoading(false)
     });
   }, []);
+
   if (isLoading) {
     return <Loading/>
   }
+
+  const addNewComment = (newComment) => {
+    setCommentList((prevComments) => [newComment, ...prevComments]);
+  };
+
   return (
     <ul className="container mx-auto grid gap-[50px] grid-cols-1 ">
         <h3 className="card-title">🗨️ Comments</h3>
+        <AddComment onAddComment={addNewComment}/>
       {commentList.map((comment) => {
         const date =dateFormat(comment.created_at,"DDDD mmm dd yyyy h:MM TT")
         return (
