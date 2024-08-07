@@ -61,4 +61,13 @@ function getUserByUsername(username){
     });
 }
 
-export { getArticles, getArticleById, getCommentsByArticleId, updateArticleById, postComment, getUserByUsername };
+function deleteCommentById(comment_id){
+  return api.delete(`comments/${comment_id}`).then((response) => {
+    return response
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+}
+
+export { getArticles, getArticleById, getCommentsByArticleId, updateArticleById, postComment, getUserByUsername, deleteCommentById };

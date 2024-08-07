@@ -9,15 +9,23 @@ import Vote from "./Vote";
 function Article() {
   const [article, setArticle] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [commentCount, setCommentCount] = useState(0);
   const { article_id } = useParams();
   const date = dateFormat(article.created_at, "DDDD mmm dd yyyy h:MM TT");
+  
 
   useEffect(() => {
     getArticleById(article_id).then((article) => {
       setArticle(article);
       setIsLoading(false);
+      setCommentCount(article.comment_count);
     });
   }, []);
+
+
+  const updateCommentCount = (newCount) => {
+    setCommentCount(newCount);
+  };
 
   if (isLoading) {
     return <Loading />;
@@ -33,13 +41,12 @@ function Article() {
           <h3>{date}</h3>
           <p>{article.body}</p>
           <section className="card-actions justify-start">
-            <div className="badge badge-outline gap-2"> 🗨️ {article.comment_count} </div>
          <Vote article={article} /> 
          </section>
         </article>
       </div>
       <div>
-        <Comments />
+        <Comments onUpdateCommentCount={updateCommentCount} commentCount={commentCount}/>
       </div>
     </section>
   );
