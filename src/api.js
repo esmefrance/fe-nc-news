@@ -37,10 +37,28 @@ function updateArticleById(article_id, vote) {
     .patch(`/articles/${article_id}`, { inc_votes: vote })
     .then((response) => {
       return response.data.article
+    })  .catch((error) => {
+        throw error
+    })
+}
+
+function postComment(article_id, comment){
+  return api.post(`/articles/${article_id}/comments`, comment).then((response) => {
+    return response.data.comment
+  })  .catch((error) => {
+      throw error
+  })
+}
+
+function getUserByUsername(username){
+  return api
+    .get(`/users/${username}`)
+    .then((response) => {
+      return response.data.user;
     })
     .catch((err) => {
-      return err
+      console.log(err);
     });
 }
 
-export { getArticles, getArticleById, getCommentsByArticleId, updateArticleById };
+export { getArticles, getArticleById, getCommentsByArticleId, updateArticleById, postComment, getUserByUsername };

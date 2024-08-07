@@ -4,46 +4,44 @@ import { useParams } from "react-router-dom";
 
 function Vote({ article }) {
   const [increaseVotes, setIncreaseVotes] = useState(0);
+  const [error, setError] = useState(null);
   const { article_id } = useParams();
+  const [disabled, setDisabled] = useState(false);
 
-  const handleUpVote = () => {
-    setIncreaseVotes((currVote) => {
-      return currVote + 1;
+  const handleVote = (change) => {
+    setIncreaseVotes((currVote) => currVote + change);
+    setError(null);
+    setDisabled(true);
+    updateArticleById(article_id, change).catch((error) => {
+      setIncreaseVotes((currVote) => currVote - change);
+      setDisabled(false);
+      setError("Your like was not successful. Please try again!");
     });
-    const vote = 1;
-    updateArticleById(article_id, vote)
-      .then()
-      .catch((err) => {
-        setIncreaseVotes((currVote) => {
-          return currVote - 1;
-        });
-      });
-  };
-
-  const handleDownVote = () => {
-    setIncreaseVotes((currVote) => {
-      return currVote - 1;
-    });
-    const vote = -1;
-    updateArticleById(article_id, vote)
-      .then()
-      .catch((err) => {
-        setIncreaseVotes((currVote) => {
-          return currVote + 1;
-        });
-      });
   };
 
   return (
     <div>
-      <div onClick={handleUpVote} className="badge badge-primary">
+      <button
+        onClick={() => handleVote(1)}
+        className="badge badge-primary"
+        disabled={disabled}
+      >
         👍
-      </div>
-      <div className="badge badge-outline">
+      </button>
+      <div className="badge badge-outline gap-2">
         ❤️ {article.votes + increaseVotes}
       </div>
-      <div onClick={handleDownVote} className="badge badge-primary">
+      <button
+        onClick={() => handleVote(-1)}
+        className="badge badge-primary gap-2"
+        disabled={disabled}
+      >
         👎
+      </button>
+      <div>
+        {error ? (
+          <div className="badge badge-error gap-2">⚠️ {error}</div>
+        ) : null}
       </div>
     </div>
   );

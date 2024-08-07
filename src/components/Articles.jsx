@@ -10,6 +10,7 @@ function Articles() {
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate()
 
+
   useEffect(() => {
     getArticles().then((data) => {
       setArticleList(data);
@@ -35,11 +36,11 @@ function Articles() {
                     <div className="badge badge-secondary">{article.topic}</div>
                   </div>
                   <section className="card-actions justify-start">
-                    <div className="badge badge-outline">
-                      ❤️ {article.votes}
+                  <div className="badge badge-outline">
+                      🗨️ {article.comment_count}
                     </div>
                     <div className="badge badge-outline">
-                      🗨️ {article.comment_count}
+                      ❤️ {article.votes}
                     </div>
                   </section>
                   <div className="card-actions justify-end">

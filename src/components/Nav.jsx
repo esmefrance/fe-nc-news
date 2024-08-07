@@ -33,15 +33,17 @@ function Nav() {
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
-            <li>
-              <div className="justify-between">Profile</div>
-            </li>
+            <Link to="/signin">
             <li>
               <div>Sign in</div>
             </li>
-            <li>
+             </Link>
+            {/* <li>
+              <div className="justify-between">Profile</div>
+            </li> */}
+            {/* <li>
               <div>Logout</div>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>
