@@ -1,28 +1,33 @@
 import { useEffect, useState } from "react";
 import { getArticles } from "../api";
-import { useNavigate } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import dateFormat from 'dateformat';
 import Loading from "./Loading";
+import Topics from "./Topics";
 
 
 function Articles() {
   const [articleList, setArticleList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate()
-
+  const [topicInput, setTopicInput] = useState("")
 
   useEffect(() => {
-    getArticles().then((data) => {
+    getArticles(topicInput).then((data) => {
       setArticleList(data);
       setIsLoading(false)
     });
-  }, []);
+  }, [topicInput]);
+
+  
 
   if (isLoading) {
     return <Loading/>
   }
 
   return (
+    <>
+    <Topics setTopicInput={setTopicInput}/>
     <ul className="container mx-auto grid gap-[50px] grid-cols-1">
       {articleList.map((article) => {
         const date =dateFormat(article.created_at,"DDDD mmm dd yyyy h:MM TT")
@@ -51,6 +56,7 @@ function Articles() {
         );
       })}
     </ul>
+    </>
   );
 }
 
