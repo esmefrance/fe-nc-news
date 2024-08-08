@@ -7,7 +7,6 @@ import { useParams, useNavigate } from "react-router-dom";
 function SignIn() {
   const { user, setUser } = useContext(UserContext);
   const [signInUsername, setSignInUsername] = useState("");
-  const { username } = useParams();
   const navigate = useNavigate();
 
   function handleSignIn(event) {
@@ -16,9 +15,7 @@ function SignIn() {
 
   function handleSubmitSignIn(event) {
     event.preventDefault();
-    console.log(signInUsername)
     getUserByUsername(signInUsername).then((currUser) => {
-        console.log(currUser)
       setUser([currUser]);
       navigate("/");
     });

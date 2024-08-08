@@ -4,11 +4,18 @@ const api = axios.create({
   baseURL: "https://nc-news-xyud.onrender.com/api",
 });
 
-function getArticles() {
-  return api.get("/articles").then((response) => {
+function getArticles(topicInput) {
+    let endpoint ='/articles'
+    if(topicInput){
+        endpoint+=`?topic=${topicInput}`
+    }
+    return api.get(endpoint)
+    .then((response) => {
     return response.data.articles;
   });
 }
+
+
 
 function getArticleById(article_id) {
   return api
@@ -62,7 +69,7 @@ function getUserByUsername(username){
 }
 
 function deleteCommentById(comment_id){
-  return api.delete(`comments/${comment_id}`).then((response) => {
+  return api.delete(`/comments/${comment_id}`).then((response) => {
     return response
   })
   .catch((err) => {
@@ -70,4 +77,13 @@ function deleteCommentById(comment_id){
   });
 }
 
-export { getArticles, getArticleById, getCommentsByArticleId, updateArticleById, postComment, getUserByUsername, deleteCommentById };
+function getTopics(){
+  return api.get('/topics').then((response) => {
+    return response.data.topics
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+}
+
+export { getArticles, getArticleById, getCommentsByArticleId, updateArticleById, postComment, getUserByUsername, deleteCommentById, getTopics };

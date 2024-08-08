@@ -7,29 +7,38 @@ function AddComment({onAddComment}) {
     const { article_id } = useParams();
     const { user, setUser } = useContext(UserContext);
     const [error, setError] = useState(null);
+    const [disabled, setDisabled] = useState(false);
     const [input, setInput] = useState({
         body: "",
         author: user[0].username
     });
 
    function handleChange(event){
-    const {name,value} = event.target
-      setInput({...input, [name]: value})
+    const {value} = event.target
+      setInput({...input, body: value})
     }
   
     function handleSubmit(event){
       event.preventDefault();
+      setDisabled(true);
+      if(!input.body){
+        setError("Comment cannot be blank!");
+        setDisabled(false);
+      }
+      else{
       postComment(article_id, input).then((newComment)=>{
       setError(null);
       onAddComment(newComment)
-       setInput({
+      setInput({
          body: "",
         author: user[0].username
       }) 
+      setDisabled(false)
       }).catch((error) => {
-        setError("Your comment was not added. Please check you are signed in!");
+        setError("Your comment was not added. Please check you are signed in!")
+        setDisabled(false)
       });
-      
+    }
     }
 
   return (
@@ -53,7 +62,7 @@ function AddComment({onAddComment}) {
             onChange={handleChange}
           />
         </label>
-        <button type="submit" className="btn btn-primary ">Submit</button>
+        <button type="submit" className="btn btn-primary" disabled={disabled}>Submit</button>
         </form>
       </div>
       {error ? (

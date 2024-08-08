@@ -1,6 +1,26 @@
 import { Link } from "react-router-dom";
+import { UserContext } from "../context/User";
+import { useContext } from "react";
 
 function Nav() {
+  const { user, setUser } = useContext(UserContext);
+  const avatar = user[0].avatar_url;
+
+  function handleSignOut(event) {
+    setUser([
+      [
+        {
+          avatar_url: "../context/avatar.png",
+          username: "",
+        },
+      ],
+    ]);
+    const elem = document.activeElement;
+    if (elem) {
+      elem?.blur();
+    }
+  }
+
   return (
     <div className="navbar bg-accent">
       <div className="flex-1">
@@ -9,13 +29,6 @@ function Nav() {
         </Link>
       </div>
       <div className="flex-none gap-2">
-        <div className="form-control">
-          <input
-            type="text"
-            placeholder="Search"
-            className="input input-bordered w-24 md:w-auto"
-          />
-        </div>
         <div className="dropdown dropdown-end">
           <div
             tabIndex={0}
@@ -23,10 +36,7 @@ function Nav() {
             className="btn btn-ghost btn-circle avatar"
           >
             <div className="w-10 rounded-full">
-              <img
-                alt="Avatar"
-                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-              />
+              <img alt="Avatar" src={avatar} />
             </div>
           </div>
           <ul
@@ -34,16 +44,13 @@ function Nav() {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
             <Link to="/signin">
+              <li>
+                <div>Sign in</div>
+              </li>
+            </Link>
             <li>
-              <div>Sign in</div>
+              <div onClick={handleSignOut}>Sign out</div>
             </li>
-             </Link>
-            {/* <li>
-              <div className="justify-between">Profile</div>
-            </li> */}
-            {/* <li>
-              <div>Logout</div>
-            </li> */}
           </ul>
         </div>
       </div>
