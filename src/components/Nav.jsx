@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 import { UserContext } from "../context/User";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 function Nav() {
+  const [dropdownOpen, setdropdownOpen] = useState(false)
+
   const { user, setUser } = useContext(UserContext);
   const avatar = user[0].avatar_url;
 
-  function handleSignOut(event) {
+  function handleSignOut() {
     setUser([
       [
         {
@@ -15,10 +17,11 @@ function Nav() {
         },
       ],
     ]);
-    const elem = document.activeElement;
-    if (elem) {
-      elem?.blur();
-    }
+    setdropdownOpen(false)
+  }
+
+  function toggleDropdown() {
+    setdropdownOpen((prev) => !prev);
   }
 
   return (
@@ -34,25 +37,27 @@ function Nav() {
             tabIndex={0}
             role="button"
             className="btn btn-ghost btn-circle avatar"
-          >
+            onClick={toggleDropdown}
+            >
             <div className="w-10 rounded-full">
               <img alt="Avatar" src={avatar} />
             </div>
           </div>
-          <ul
+          {dropdownOpen && ( <ul
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-          >
+            >
             <Link to="/signin">
               <li>
-                <div>Sign in</div>
+                <div onClick={toggleDropdown}>Sign in</div>
               </li>
             </Link>
             <li>
               <div onClick={handleSignOut}>Sign out</div>
             </li>
           </ul>
-        </div>
+          )}
+          </div>
       </div>
     </div>
   );
