@@ -10,12 +10,11 @@ function Nav() {
 
   function handleSignOut() {
     setUser([
-      [
-        {
-          avatar_url: "../context/avatar.png",
-          username: "",
-        },
-      ],
+      {
+        username: "",
+        name: "",
+        avatar_url: "" 
+      }
     ]);
     setdropdownOpen(false)
   }
@@ -45,7 +44,7 @@ function Nav() {
           </div>
           {dropdownOpen && ( <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-40 p-2 shadow"
             >
             <Link to="/signin">
               <li>

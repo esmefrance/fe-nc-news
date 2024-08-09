@@ -5,8 +5,9 @@ export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState([
     {
-      avatar_url: "src/context/avatar.png",
       username: "",
+      name:"",
+      avatar_url: "src/context/avatar.png"
     },
   ]);
 

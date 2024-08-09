@@ -19,7 +19,11 @@ function Article() {
     getArticleById(article_id).then((article) => {
       setArticle(article);
       setIsLoading(false);
+      setError(null);
       setCommentCount(article.comment_count);
+    }).catch(() => {
+      setError("Article not found. Please try again.");
+      setIsLoading(false); 
     });
   }, []);
 
@@ -32,8 +36,12 @@ function Article() {
     return <Loading />;
   }
 
+  if (error) {
+    return <div className="badge badge-error gap-2">⚠️ {error}</div>;
+  }else {
   return (
     <section className="container mx-auto grid gap-[50px] grid-cols-1">
+      
       <div className="card bg-base-100 w-150 shadow-xl">
         <article className="card-body">
           <div className="badge badge-secondary">{article.topic}</div>
@@ -51,7 +59,8 @@ function Article() {
         <Comments onUpdateCommentCount={updateCommentCount} commentCount={commentCount}/>
       </div>
     </section>
-  );
+  )
+}
 }
 
 export default Article;
