@@ -100,4 +100,6 @@ function getAuthors(){
     });
 }
 
+
+
 export { getArticles, getArticleById, getCommentsByArticleId, updateArticleById, postComment, getUserByUsername, deleteCommentById, getTopics, getAuthors };
