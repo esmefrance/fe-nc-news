@@ -2,15 +2,22 @@ import { useEffect, useState } from "react";
 import { getTopics } from "../api";
 import { Link } from "react-router-dom";
 
-function Topics({ setTopicInput }) {
+function Topics({ setTopicInput, topicQuery }) {
   const [topics, setTopics] = useState([]);
+  const [error, setError] = useState(null);
   const [dropdownOpen, setdropdownOpen] = useState(false)
 
   useEffect(() => {
     getTopics().then((topics) => {
-      setTopics(topics);
-    });
-  }, []);
+      setTopics(topics)
+      setError(null)
+      if (topicQuery && !topics.some((topic) => topic.slug === topicQuery)) {
+        setError("This topic does not exist. Please try again.");
+      }
+    }).catch(() => {
+        setError("This topic does not exist. Please try again.");
+      });
+  }, [topicQuery]);
 
   function handleClick(topic) {
     setTopicInput(topic);
@@ -22,8 +29,11 @@ function Topics({ setTopicInput }) {
   }
 
   return (
-    <div className="dropdown">
-      <div tabIndex={0} role="button" className="btn btn-primary" onClick={toggleDropdown}>
+    <>{error ? (
+        <div className="badge badge-error gap-2 ">⚠️ {error}</div>
+      ) : null}
+    <div className="dropdown ">
+      <div tabIndex={0} role="button" className="btn btn-primary " onClick={toggleDropdown}>
         Topics
       </div>
       <ul
@@ -44,6 +54,7 @@ function Topics({ setTopicInput }) {
         </Link>
       </ul>
     </div>
+    </>
   );
 }
 

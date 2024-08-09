@@ -13,7 +13,9 @@ function getArticles(params = {}) {
   const endpoint = query ? `/articles?${query}` : '/articles';
 
   return api.get(endpoint)
-    .then((response) => response.data.articles);
+    .then((response) => response.data.articles).catch((error) => {
+      throw error
+    })
 }
 
 
@@ -24,8 +26,8 @@ function getArticleById(article_id) {
     .then((response) => {
       return response.data.article;
     })
-    .catch((err) => {
-      console.log(err);
+    .catch((error) => {
+      throw error
     });
 }
 
@@ -35,8 +37,8 @@ function getCommentsByArticleId(article_id) {
     .then((response) => {
       return response.data.comments;
     })
-    .catch((err) => {
-      console.log(err);
+    .catch((error) => {
+      throw error
     });
 }
 
@@ -64,8 +66,8 @@ function getUserByUsername(username){
     .then((response) => {
       return response.data.user;
     })
-    .catch((err) => {
-      console.log(err);
+    .catch((error) => {
+      throw error
     });
 }
 
@@ -73,8 +75,8 @@ function deleteCommentById(comment_id){
   return api.delete(`/comments/${comment_id}`).then((response) => {
     return response
   })
-  .catch((err) => {
-    console.log(err);
+  .catch((error) => {
+    throw error
   });
 }
 
@@ -82,8 +84,8 @@ function getTopics(){
   return api.get('/topics').then((response) => {
     return response.data.topics
   })
-  .catch((err) => {
-    console.log(err);
+  .catch((error) => {
+    throw error
   });
 }
 
@@ -93,8 +95,8 @@ function getAuthors(){
     .then((response) => {
       return response.data.users;
     })
-    .catch((err) => {
-      console.log(err);
+    .catch((error) => {
+      throw error
     });
 }
 

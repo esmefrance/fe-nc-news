@@ -7,6 +7,8 @@ import { useParams, useNavigate } from "react-router-dom";
 function SignIn() {
   const { user, setUser } = useContext(UserContext);
   const [signInUsername, setSignInUsername] = useState("");
+  const [error, setError] = useState(null);
+
 
   const navigate = useNavigate();
 
@@ -18,15 +20,18 @@ function SignIn() {
     event.preventDefault();
     getUserByUsername(signInUsername).then((currUser) => {
       setUser([currUser]);
+      setError(null);
       navigate("/");
+    }).catch(() => {
+      setError("This user does not exist. Please try again.");
     });
   }
 
   return (
     <div>
-      <form>
+      <form className="p-5">
         <h1>Sign In</h1>
-        <label className="form-control w-full max-w-xs">
+        <label className="form-control w-full max-w-xs ">
           <div className="label">
             <span className="label-text">Username</span>
           </div>
@@ -49,6 +54,9 @@ function SignIn() {
           />
         </label>
       </form>
+      {error ? (
+          <div className="badge badge-error gap-2">⚠️ {error}</div>
+        ) : null}
     </div>
   );
 }
