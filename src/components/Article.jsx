@@ -9,6 +9,7 @@ import Vote from "./Vote";
 function Article() {
   const [article, setArticle] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [commentCount, setCommentCount] = useState(0);
   const { article_id } = useParams();
   const date = dateFormat(article.created_at, "DDDD mmm dd yyyy h:MM TT");
@@ -39,6 +40,7 @@ function Article() {
           <h2 className="card-title">{article.title}</h2>
           <h3>{article.author}</h3>
           <h3>{date}</h3>
+          <img src={article.article_img_url}></img>
           <p>{article.body}</p>
           <section className="card-actions justify-start">
          <Vote article={article} /> 
