@@ -13,7 +13,7 @@ function Nav() {
       {
         username: "",
         name: "",
-        avatar_url: "" 
+        avatar_url: "./avatar.png"
       }
     ]);
     setdropdownOpen(false)

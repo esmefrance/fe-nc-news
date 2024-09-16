@@ -7,7 +7,7 @@ export const UserProvider = ({ children }) => {
     {
       username: "",
       name:"",
-      avatar_url: "src/context/avatar.png"
+      avatar_url: "./avatar.png"
     },
   ]);
 

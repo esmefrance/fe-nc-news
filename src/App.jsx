@@ -12,10 +12,10 @@ function App() {
         <Nav />
       </nav>
       <Routes>
-        <Route path="/" element={<Articles />} />
-        <Route path="/:article_id" element={<Article />} />
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/*" element={<ErrorPage />} />
+          <Route path="/" element={<Articles />} />
+          <Route path="/:article_id" element={<Article />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/*" element={<ErrorPage />} />
       </Routes>
     </>
   );
