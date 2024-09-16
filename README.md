@@ -1,7 +1,7 @@
-# Northcoders News API
+# News App
 
 ## Project Summary
-NC News is a social news platform inspired by Reddit. It allows users to  view articles, up/down vote articles and sign in to post comments. 
+News is a social news platform inspired by Reddit. It allows users to  view articles, up/down vote articles and sign in to post comments. 
 
 It's built using React.js, React Router, Axios for API requests,Tailwind CSS and DaisyUI component library.
 

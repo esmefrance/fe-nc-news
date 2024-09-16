@@ -18,18 +18,21 @@ function SignIn() {
 
   function handleSubmitSignIn(event) {
     event.preventDefault();
+    if(!signInUsername){
+      setError("Username cannot be blank! Try entering: cooljmessy")}else{
     getUserByUsername(signInUsername).then((currUser) => {
       setUser([currUser]);
       setError(null);
-      navigate("/");
+      navigate("/")
     }).catch(() => {
       setError("This user does not exist. Please try again.");
     });
   }
+  }
 
   return (
-    <div>
-      <form className="p-5">
+    <div className="space-y-2 m-5">
+      <form >
         <h1>Sign In</h1>
         <label className="form-control w-full max-w-xs ">
           <div className="label">
@@ -55,7 +58,7 @@ function SignIn() {
         </label>
       </form>
       {error ? (
-          <div className="badge badge-error gap-2">⚠️ {error}</div>
+          <div className="badge badge-lg badge-error gap-2">⚠️ {error}</div>
         ) : null}
     </div>
   );

@@ -37,18 +37,18 @@ function Article() {
   }
 
   if (error) {
-    return <div className="badge badge-error gap-2">⚠️ {error}</div>;
+    return <div className="badge badge-lg badge-error gap-2">⚠️ {error}</div>;
   }else {
   return (
     <section className="container mx-auto grid gap-[50px] grid-cols-1">
       
       <div className="card bg-base-100 w-150 shadow-xl">
         <article className="card-body">
-          <div className="badge badge-secondary">{article.topic}</div>
+          <div className="badge badge-lg badge-secondary">{article.topic}</div>
           <h2 className="card-title">{article.title}</h2>
           <h3>{article.author}</h3>
           <h3>{date}</h3>
-          <img src={article.article_img_url}></img>
+          <img src={article.article_img_url} alt={article.title}></img>
           <p>{article.body}</p>
           <section className="card-actions justify-start">
          <Vote article={article} /> 
