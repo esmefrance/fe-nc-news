@@ -5,7 +5,7 @@ import { UserContext } from "../context/User";
 
 function AddComment({onAddComment}) {
     const { article_id } = useParams();
-    const { user, setUser } = useContext(UserContext);
+    const { user } = useContext(UserContext);
     const [error, setError] = useState(null);
     const [disabled, setDisabled] = useState(false);
     const [input, setInput] = useState({
