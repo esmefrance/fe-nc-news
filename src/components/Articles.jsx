@@ -102,7 +102,7 @@ function Articles() {
           </ul>
         </section>
       </section>
-      {error ? <div className="badge badge-error gap-2">⚠️ {error}</div> : null}
+      {error ? <div className="badge badge-lg badge-error gap-2">⚠️ {error}</div> : null}
       <ul className="container mx-auto grid gap-[50px] grid-cols-1">
         {articleList.map((article) => {
           const date = dateFormat(
@@ -119,13 +119,13 @@ function Articles() {
                 <h3>{article.author}</h3>
                 <h3>{date}</h3>
                 <div className="card-actions justify-start">
-                  <div className="badge badge-secondary">{article.topic}</div>
+                  <div className="badge badge-lg badge-secondary">{article.topic}</div>
                 </div>
                 <section className="card-actions justify-start">
-                  <div className="badge badge-outline">
+                  <div className="badge badge-lg badge-outline">
                     🗨️ {article.comment_count}
                   </div>
-                  <div className="badge badge-outline">❤️ {article.votes}</div>
+                  <div className="badge badge-lg badge-outline">❤️ {article.votes}</div>
                 </section>
                 <div className="card-actions justify-end">
                   <button

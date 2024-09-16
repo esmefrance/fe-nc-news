@@ -66,7 +66,7 @@ function Comments({ commentCount, onUpdateCommentCount }) {
                   🗑️ Delete
                 </button>
               )}
-              {error ? <div className="badge badge-error gap-2">⚠️ {error}</div> : null}
+              {error ? <div className="badge badge-lg badge-error gap-2">⚠️ {error}</div> : null}
             </article>
           </li>
         );

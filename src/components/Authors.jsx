@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState} from "react";
 import { getAuthors } from "../api";
 import { Link } from "react-router-dom";
 

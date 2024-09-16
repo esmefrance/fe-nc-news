@@ -27,7 +27,7 @@ function Nav() {
     <div className="navbar bg-accent">
       <div className="flex-1">
         <Link to="/">
-          <div className="btn btn-ghost text-xl"> 🗞️ News 🗞️ </div>
+          <h1 className="btn btn-ghost text-xl"> 🗞️ News 🗞️ </h1>
         </Link>
       </div>
       <div className="flex-none gap-2">

@@ -30,7 +30,7 @@ function Topics({ setTopicInput, topicQuery }) {
 
   return (
     <>{error ? (
-        <div className="badge badge-error gap-2 ">⚠️ {error}</div>
+        <div className="badge badge-lg badge-error gap-2 ">⚠️ {error}</div>
       ) : null}
     <div className="dropdown ">
       <div tabIndex={0} role="button" className="btn btn-primary " onClick={toggleDropdown}>

@@ -20,27 +20,27 @@ function Vote({ article }) {
   };
 
   return (
-    <div>
+    <div className="space-x-2">
       <button
         onClick={() => handleVote(1)}
-        className="badge badge-primary"
+        className="badge badge-lg badge-primary"
         disabled={disabled}
       >
         👍
       </button>
-      <div className="badge badge-outline gap-2">
+      <div className="badge badge-lg badge-outline gap-2">
         ❤️ {article.votes + increaseVotes}
       </div>
       <button
         onClick={() => handleVote(-1)}
-        className="badge badge-primary gap-2"
+        className="badge badge-lg badge-primary gap-2"
         disabled={disabled}
       >
         👎
       </button>
       <div>
         {error ? (
-          <div className="badge badge-error gap-2">⚠️ {error}</div>
+          <div className="badge badge-lg badge-error gap-2">⚠️ {error}</div>
         ) : null}
       </div>
     </div>
