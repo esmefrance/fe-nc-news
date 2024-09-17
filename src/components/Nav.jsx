@@ -30,6 +30,11 @@ function Nav() {
           <h1 className="btn btn-ghost text-xl"> 🗞️ News 🗞️ </h1>
         </Link>
       </div>
+      {/* <Link to="/add-article">
+        <div className="btn btn-secondary btn-sm">
+          + article
+        </div>
+      </Link> */}
       <div className="flex-none gap-2">
         <div className="dropdown dropdown-end">
           <div

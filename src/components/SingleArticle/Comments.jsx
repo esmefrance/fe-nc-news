@@ -1,10 +1,10 @@
 import { useEffect, useState, useContext } from "react";
 import dateFormat from "dateformat";
 import { useParams } from "react-router-dom";
-import { getCommentsByArticleId, deleteCommentById } from "../api";
-import Loading from "./Loading";
+import { getCommentsByArticleId, deleteCommentById } from "../../api";
+import Loading from "../Loading";
 import AddComment from "./AddComment";
-import { UserContext } from "../context/User";
+import { UserContext } from "../../context/User";
 
 function Comments({ commentCount, onUpdateCommentCount }) {
   const [commentList, setCommentList] = useState([]);

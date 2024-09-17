@@ -1,6 +1,6 @@
 import dateFormat from "dateformat";
 import { useNavigate } from "react-router-dom";
-import { getUserByUsername } from "../api";
+import { getUserByUsername } from "../../api";
 import { useEffect, useState } from "react";
 
 function ArticleCard({ article }) {
@@ -24,8 +24,9 @@ function ArticleCard({ article }) {
       <article className="card-body">
         <h2 className="card-title">{article.title}</h2>
         {author && 
-    
-          <img src={author.avatar_url} alt="author's avatar" className="w-8 rounded-full" />
+          <div className="avatar w-8 h-8 ">
+            <img src={author.avatar_url} alt="author's avatar" className="w-8 h-8 rounded-full object-cover" />
+          </div>
        } 
         <h3>{article.author}</h3>
         <h3>{date}</h3>

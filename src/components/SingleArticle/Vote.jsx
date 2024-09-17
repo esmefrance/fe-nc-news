@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { updateArticleById } from "../api";
+import { updateArticleById } from "../../api";
 import { useParams } from "react-router-dom";
 
 function Vote({ article }) {

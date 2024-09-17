@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getTopics } from "../api";
+import { getTopics } from "../../api";
 import { Link } from "react-router-dom";
 
 function Topics({ setTopicInput, topicQuery }) {
