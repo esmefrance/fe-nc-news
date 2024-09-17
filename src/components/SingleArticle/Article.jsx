@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getArticleById } from "../api";
+import { getArticleById } from "../../api";
 import dateFormat from "dateformat";
 import Comments from "./Comments";
-import Loading from "./Loading";
+import Loading from "../Loading";
 import Vote from "./Vote";
 
 function Article() {

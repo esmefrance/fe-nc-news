@@ -1,12 +1,12 @@
-
 import { useEffect, useState } from "react";
-import { getArticles } from "../api";
+import { getArticles } from "../../api";
 import { useSearchParams } from "react-router-dom";
-import Loading from "./Loading";
+import Loading from "../Loading";
 import Topics from "./Topics";
 import ArticleCard from "./ArticleCard";
 import SortDropdown from "./SortDropdown";
 import OrderDropdown from "./OrderDropdown";
+
 
 function Articles() {
   const [articleList, setArticleList] = useState([]);
@@ -14,7 +14,7 @@ function Articles() {
   const [error, setError] = useState(null);
   const [topicInput, setTopicInput] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
-  
+
   const sortByQuery = searchParams.get("sort_by");
   const orderQuery = searchParams.get("order");
   const topicQuery = searchParams.get("topic");
@@ -37,6 +37,7 @@ function Articles() {
       sort_by: sortByQuery || null,
       order: orderQuery || null,
       topic: topicInput || topicQuery || null,
+
     })
       .then((data) => {
         setError(null);
@@ -55,13 +56,18 @@ function Articles() {
 
   return (
     <>
-      <section id="filter and sort buttons" className="space-x-4 p-2 flex justify-center">
+      <section
+        id="filter and sort buttons"
+        className="space-x-4 p-2 flex justify-center"
+      >
         <Topics setTopicInput={setTopicInput} topicQuery={topicQuery} />
         <SortDropdown setSort={setSort} />
         <OrderDropdown setOrder={setOrder} />
       </section>
 
-      {error && <div className="badge badge-lg badge-error gap-2">⚠️ {error}</div>}
+      {error && (
+        <div className="badge badge-lg badge-error gap-2">⚠️ {error}</div>
+      )}
 
       <ul className="container mx-auto grid gap-[50px] grid-cols-1">
         {articleList.map((article) => (

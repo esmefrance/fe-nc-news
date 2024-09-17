@@ -11,7 +11,7 @@ function getArticles(params = {}) {
 
   const query = new URLSearchParams(filteredParams).toString();
   const endpoint = query ? `/articles?${query}` : '/articles';
-
+  console.log("Endpoint:", endpoint); 
   return api.get(endpoint)
     .then((response) => response.data.articles).catch((error) => {
       throw error

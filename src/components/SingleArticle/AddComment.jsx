@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react';
 import { useParams } from "react-router-dom";
-import { postComment } from '../api';
-import { UserContext } from "../context/User";
+import { postComment } from '../../api';
+import { UserContext } from "../../context/User";
 
 function AddComment({onAddComment}) {
     const { article_id } = useParams();
