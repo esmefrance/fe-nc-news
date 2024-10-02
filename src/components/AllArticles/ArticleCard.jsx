@@ -23,13 +23,20 @@ function ArticleCard({ article }) {
     <li className="card bg-base-100 w-150 shadow-xl">
       <article className="card-body">
         <h2 className="card-title">{article.title}</h2>
-        {author && 
-          <div className="avatar w-8 h-8 ">
-            <img src={author.avatar_url} alt="author's avatar" className="w-8 h-8 rounded-full object-cover" />
-          </div>
-       } 
-        <h3>{article.author}</h3>
-        <h3>{date}</h3>
+        <div className="flex flex-row space-x-2">
+              {author && (
+                <div className="avatar w-8 h-8 rounded-full ring-1 ring-black ">
+                  <img
+                    src={author.avatar_url}
+                    alt="author's avatar"
+                    className="w-8 h-8 rounded-full object-cover"
+                  />
+                </div>
+              )}
+              <h3>{article.author}</h3>
+        
+            </div>
+        <p>{date}</p>
         <div className="card-actions justify-start">
           <div className="badge badge-lg badge-secondary">{article.topic}</div>
         </div>

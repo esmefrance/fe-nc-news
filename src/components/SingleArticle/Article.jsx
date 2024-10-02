@@ -22,6 +22,7 @@ function Article() {
         setIsLoading(false);
         setError(null);
         setCommentCount(article.comment_count);
+        fetchAuthor(article)
       })
       .catch(() => {
         setError("Article not found. Please try again.");
@@ -29,15 +30,17 @@ function Article() {
       });
   }, []);
 
-  useEffect(() => {
-    getUserByUsername(article.author)
-      .then((userData) => {
-        setAuthor(userData);
-      })
-      .catch((error) => {
-        console.error("Error getting author data:", error);
-      });
-  }, [article.author]);
+  const fetchAuthor = (article) => {
+        getUserByUsername(article.author)
+          .then((userData) => {
+            setAuthor(userData) 
+          })
+          .catch((error) => {
+            console.error("Error getting author data:", error);
+          });
+      }
+    
+  
 
   const updateCommentCount = (newCount) => {
     setCommentCount(newCount);
@@ -70,7 +73,7 @@ function Article() {
               )}
               <h3>{article.author}</h3>
             </div>
-            <h3>{date}</h3>
+            <p>{date}</p>
             <img src={article.article_img_url} alt={article.title}></img>
             <p>{article.body}</p>
             <section className="card-actions justify-start">
