@@ -16,7 +16,7 @@ function App() {
           <Route path="/" element={<Articles />} />
           <Route path="/:article_id" element={<Article />} />
           <Route path="/signin" element={<SignIn />} />
-          {/* <Route path="/add-article" element={<PostArticle />} /> */}
+          <Route path="/add-article" element={<PostArticle />} />
           <Route path="/*" element={<ErrorPage />} />
       </Routes>
     </>

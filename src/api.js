@@ -8,10 +8,8 @@ function getArticles(params = {}) {
   const filteredParams = Object.fromEntries(
     Object.entries(params).filter(([key, value]) => value)
   );
-
   const query = new URLSearchParams(filteredParams).toString();
   const endpoint = query ? `/articles?${query}` : '/articles';
-  console.log("Endpoint:", endpoint); 
   return api.get(endpoint)
     .then((response) => response.data.articles).catch((error) => {
       throw error
@@ -100,6 +98,17 @@ function getAuthors(){
     });
 }
 
+function postArticle(article){
+  return api 
+  .post("articles", article )
+  .then((response) => {
+    return response.data.article;
+  })
+  .catch((error) => {
+    throw error
+  });
+}
 
 
-export { getArticles, getArticleById, getCommentsByArticleId, updateArticleById, postComment, getUserByUsername, deleteCommentById, getTopics, getAuthors };
+
+export { getArticles, getArticleById, getCommentsByArticleId, updateArticleById, postComment, getUserByUsername, deleteCommentById, getTopics, getAuthors, postArticle };

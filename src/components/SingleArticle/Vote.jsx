@@ -40,7 +40,7 @@ function Vote({ article }) {
       </button>
       <div>
         {error ? (
-          <div className="badge badge-lg badge-error gap-2">⚠️ {error}</div>
+          <div className="text-red-500 text-sm text-center">⚠️ {error}</div>
         ) : null}
       </div>
     </div>

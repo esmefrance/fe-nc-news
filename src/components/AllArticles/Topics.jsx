@@ -29,11 +29,12 @@ function Topics({ setTopicInput, topicQuery }) {
   }
 
   return (
-    <>{error ? (
-        <div className="badge badge-lg badge-error gap-2 ">⚠️ {error}</div>
-      ) : null}
+    <>
+      {error ? (
+            <p className="text-red-500 text-sm text-center">⚠️ {error}</p>
+          ) : null}
     <div className="dropdown ">
-      <div tabIndex={0} role="button" className="btn btn-primary " onClick={toggleDropdown}>
+      <div tabIndex={0} role="button" className="btn btn-secondary" onClick={toggleDropdown}>
         Topics
       </div>
       <ul

@@ -1,14 +1,15 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../context/User";
 import { getUserByUsername } from "../api";
-import { useParams, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
+import Loading from "./Loading";
 
 
 function SignIn() {
   const { user, setUser } = useContext(UserContext);
   const [signInUsername, setSignInUsername] = useState("");
   const [error, setError] = useState(null);
-
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -18,22 +19,35 @@ function SignIn() {
 
   function handleSubmitSignIn(event) {
     event.preventDefault();
-    if(!signInUsername){
-      setError("Username cannot be blank! Try entering: cooljmessy")}else{
-    getUserByUsername(signInUsername).then((currUser) => {
-      setUser([currUser]);
-      setError(null);
-      navigate("/")
-    }).catch(() => {
-      setError("This user does not exist. Please try again.");
-    });
-  }
+    if (!signInUsername) {
+      setError("Username cannot be blank! Try entering: cooljmessy");
+    } else {
+      setIsLoading(true); 
+      getUserByUsername(signInUsername)
+        .then((currUser) => {
+          setUser([currUser]);
+          setError(null);
+          navigate("/");
+        })
+        .catch(() => {
+          setError("This user does not exist. Please try again.");
+        })
+        .finally(() => {
+          setIsLoading(false); 
+        });
+    }
   }
 
+  if (isLoading) {
+    return <Loading />;
+  }
   return (
     <div className="space-y-2 m-5">
       <form >
-        <h1>Sign In</h1>
+        <h2>Sign In</h2>
+        {error ? (
+            <p className="text-red-500 text-sm text-center">⚠️ {error}</p>
+          ) : null}
         <label className="form-control w-full max-w-xs ">
           <div className="label">
             <span className="label-text">Username</span>
@@ -57,9 +71,6 @@ function SignIn() {
           />
         </label>
       </form>
-      {error ? (
-          <div className="badge badge-lg badge-error gap-2">⚠️ {error}</div>
-        ) : null}
     </div>
   );
 }
