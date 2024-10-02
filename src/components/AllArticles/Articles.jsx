@@ -11,7 +11,7 @@ import OrderDropdown from "./OrderDropdown";
 function Articles() {
   const [articleList, setArticleList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(false);
   const [topicInput, setTopicInput] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -65,9 +65,9 @@ function Articles() {
         <OrderDropdown setOrder={setOrder} />
       </section>
 
-      {error && (
-        <div className="badge badge-lg badge-error gap-2">⚠️ {error}</div>
-      )}
+      {error ? (
+            <p className="text-red-500 text-sm text-center">⚠️ {error}</p>
+          ) : null}
 
       <ul className="container mx-auto grid gap-[50px] grid-cols-1">
         {articleList.map((article) => (

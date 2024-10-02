@@ -24,17 +24,17 @@ function Nav() {
   }
 
   return (
-    <div className="navbar bg-accent">
+    <div className="navbar bg-primary">
       <div className="flex-1">
         <Link to="/">
           <h1 className="btn btn-ghost text-xl"> 🗞️ News 🗞️ </h1>
         </Link>
       </div>
-      {/* <Link to="/add-article">
-        <div className="btn btn-secondary btn-sm">
+      <Link to="/add-article">
+        <div className="btn btn-accent btn-sm ">
           + article
         </div>
-      </Link> */}
+      </Link>
       <div className="flex-none gap-2">
         <div className="dropdown dropdown-end">
           <div

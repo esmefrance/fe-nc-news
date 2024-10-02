@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 function SortDropdown({ setSort }) {
   return (
     <section className="dropdown">
-      <div tabIndex={0} role="button" className="btn btn-primary">
+      <div tabIndex={0} role="button" className="btn btn-accent">
         Sort By
       </div>
       <ul

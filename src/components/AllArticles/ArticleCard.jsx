@@ -38,7 +38,7 @@ function ArticleCard({ article }) {
           <div className="badge badge-lg badge-outline">❤️ {article.votes}</div>
         </section>
         <div className="card-actions justify-end">
-          <button className="btn btn-primary" onClick={() => navigate(`/${article.article_id}`)}>
+          <button className="btn btn-accent" onClick={() => navigate(`/${article.article_id}`)}>
             Read More
           </button>
         </div>

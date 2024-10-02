@@ -42,32 +42,32 @@ function AddComment({onAddComment}) {
     }
 
   return (
-    <div className="bg-base-200 collapse space-y-2">
+    <div className="bg-base-200 collapse space-y-2 shadow-xl">
       <input type="checkbox" className="peer" />
-      <div className="collapse-title bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
+      <div className="collapse-title bg-accent text-primary-content peer-checked:bg-primary peer-checked:text-secondary-content">
         Add a comment
       </div>
       <div className="collapse-content bg-primary text-primary-content peer-checked:bg-base-100 peer-checked:text-secondary-content">
         <form onSubmit={handleSubmit} className="space-y-2" >
-        <label className="form-control w-full max-w-xs">
+        <label className="form-control w-full max-w-md">
           <div className="label">
             <span className="label-text ">Comment</span>
           </div>
+          {error ? (
+            <p className="text-red-500 text-sm text-center">⚠️ {error}</p>
+          ) : null}
           <input
             type="text"
             placeholder="Enter your comment"
-            className="input input-bordered w-full max-w-xs text-base-content"
+            className="input input-bordered w-full max-w-md text-base-content"
             name="body"
             value={input.body || ""} 
             onChange={handleChange}
           />
         </label>
-        <button type="submit" className="btn btn-primary" disabled={disabled}>Submit</button>
+        <button type="submit" className="btn btn-accent" disabled={disabled}>Submit</button>
         </form>
       </div>
-      {error ? (
-          <div className="badge badge-lg badge-error gap-2">⚠️ {error}</div>
-        ) : null}
     </div>
   );
 }
