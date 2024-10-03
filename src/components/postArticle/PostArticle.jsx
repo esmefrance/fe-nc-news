@@ -27,10 +27,10 @@ function PostArticle() {
   }, [user]);
 
   function handleTopicClick(topic) {
-    console.log(topicInput)
+    console.log(topicInput);
     setTopicInput(topic);
-    toggleDropdown
-    console.log(topic)
+    toggleDropdown;
+    console.log(topic);
   }
 
   function toggleDropdown() {
@@ -86,7 +86,7 @@ function PostArticle() {
 
   return (
     <>
-      <section className="card bg-base-200 w-150 shadow-xl space-y-2 m-5">
+      <section className="card bg-base-100 w-150 shadow-xl space-y-2 m-5">
         <form onSubmit={handleSubmitArticle} className="card-body">
           <h2 className="card-title">Add Article</h2>
           {error ? (
@@ -118,21 +118,29 @@ function PostArticle() {
           {/* Dropdown for topics */}
           <div className="dropdown">
             <button
-              className="btn btn-primary"
+              className="btn btn-primary  w-40"
               type="button"
               onClick={toggleDropdown}
             >
               Topics
             </button>
             {dropdownOpen && (
-              <ul className="dropdown-content menu bg-base-100 rounded-box z-[1] w-30 p-2 shadow">
+              <ul className="dropdown-content menu bg-base-100  rounded-box z-[1] mt-3 w-35 p-2 shadow">
                 {topicsArray.map((topic) => (
-                  <li key={topic} onClick={() => handleTopicClick(topic)}>
+                  <li
+                    className="px-4 py-2 hover:bg-gray-200 rounded-lg cursor-pointer"
+                    key={topic}
+                    onClick={() => handleTopicClick(topic)}
+                  >
                     {topic}
                   </li>
                 ))}
-                <li onClick={() => handleTopicClick(null)} key="clear-topics">
-                  Clear
+                <li
+                  className="px-4 py-2 hover:bg-gray-200 rounded-lg cursor-pointer"
+                  onClick={() => handleTopicClick(null)}
+                  key="clear-topics"
+                >
+                  clear
                 </li>
               </ul>
             )}
@@ -149,11 +157,11 @@ function PostArticle() {
               required
             />
           </label>
-          <label className="form-control w-full max-w-xs">
+          <label className="card-actions justify-end">
             <button
               disabled={!user || user[0].username === ""}
               type="submit"
-              className="btn btn-secondary"
+              className="btn btn-accent"
             >
               Submit Article
             </button>
@@ -165,5 +173,3 @@ function PostArticle() {
 }
 
 export default PostArticle;
-
-

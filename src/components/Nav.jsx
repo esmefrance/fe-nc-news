@@ -49,15 +49,15 @@ function Nav() {
           </div>
           {dropdownOpen && ( <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-40 p-2 shadow"
+            className="dropdown-content menu bg-base-100 rounded-box z-[1] mt-3 w-40 p-2 shadow"
             >
             <Link to="/signin">
               <li>
-                <div onClick={toggleDropdown}>Sign in</div>
+                <div className="px-4 py-2 hover:bg-gray-200 rounded-lg cursor-pointer" onClick={toggleDropdown}>Sign in</div>
               </li>
             </Link>
             <li>
-              <div onClick={handleSignOut}>Sign out</div>
+              <div className="px-4 py-2 hover:bg-gray-200 rounded-lg cursor-pointer" onClick={handleSignOut}>Sign out</div>
             </li>
           </ul>
           )}
