@@ -3,12 +3,12 @@ import { UserContext } from "../../context/User";
 import Loading from "../Loading";
 import { postArticle } from "../../api";
 import { useNavigate } from "react-router-dom";
+import Topics from "../AllArticles/Topics";
 
 function PostArticle() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const [topicInput, setTopicInput] = useState("");
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [topicSelected, setTopicSelected] = useState(null);
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -26,17 +26,6 @@ function PostArticle() {
     }
   }, [user]);
 
-  function handleTopicClick(topic) {
-    console.log(topicInput);
-    setTopicInput(topic);
-    toggleDropdown;
-    console.log(topic);
-  }
-
-  function toggleDropdown() {
-    setDropdownOpen((prev) => !prev);
-  }
-
   function handleChange(event) {
     const { name, value } = event.target;
     setFormData({
@@ -47,16 +36,9 @@ function PostArticle() {
 
   function handleSubmitArticle(event) {
     event.preventDefault();
-
-    if (!topicInput) {
-      setError("Please select a topic.");
-      return;
-    }
-
     const updatedFormData = {
       ...formData,
       author: user[0].username,
-      topic: topicInput,
     };
 
     setIsLoading(true);
@@ -114,37 +96,24 @@ function PostArticle() {
               required
             />
           </label>
-
-          {/* Dropdown for topics */}
-          <div className="dropdown">
-            <button
-              className="btn btn-primary  w-40"
-              type="button"
-              onClick={toggleDropdown}
+        
+            <select
+              name="topic"
+              value={formData.topic}
+              onChange={handleChange}
+              required
+              className="select select-bordered w-full max-w-xs"
             >
-              Topics
-            </button>
-            {dropdownOpen && (
-              <ul className="dropdown-content menu bg-base-100  rounded-box z-[1] mt-3 w-35 p-2 shadow">
-                {topicsArray.map((topic) => (
-                  <li
-                    className="px-4 py-2 hover:bg-gray-200 rounded-lg cursor-pointer"
-                    key={topic}
-                    onClick={() => handleTopicClick(topic)}
-                  >
-                    {topic}
-                  </li>
-                ))}
-                <li
-                  className="px-4 py-2 hover:bg-gray-200 rounded-lg cursor-pointer"
-                  onClick={() => handleTopicClick(null)}
-                  key="clear-topics"
-                >
-                  clear
-                </li>
-              </ul>
-            )}
-          </div>
+              <option disabled value="" key="clear">
+                -- Select a Topic --
+              </option>
+              {topicsArray.map((topic) => (
+                <option key={topic} value={topic}>
+                  {topic}
+                </option>
+              ))}
+            </select>
+       
 
           <label className="input input-bordered flex items-center gap-2">
             <input
