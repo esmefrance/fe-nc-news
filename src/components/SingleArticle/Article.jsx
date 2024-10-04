@@ -16,6 +16,7 @@ function Article() {
   const date = dateFormat(article.created_at, "DDDD mmm dd yyyy h:MM TT");
 
   useEffect(() => {
+    setIsLoading(true);
     getArticleById(article_id)
       .then((article) => {
         setArticle(article);

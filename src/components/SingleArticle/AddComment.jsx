@@ -2,10 +2,12 @@ import { useState, useContext } from 'react';
 import { useParams } from "react-router-dom";
 import { postComment } from '../../api';
 import { UserContext } from "../../context/User";
+import Loading from "../Loading";
 
 function AddComment({onAddComment}) {
     const { article_id } = useParams();
     const { user } = useContext(UserContext);
+    const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const [disabled, setDisabled] = useState(false);
     const [input, setInput] = useState({
@@ -27,7 +29,8 @@ function AddComment({onAddComment}) {
       }
       else{
       postComment(article_id, input).then((newComment)=>{
-      setError(null);
+      setError(null)
+      setIsLoading(true)
       onAddComment(newComment)
       setInput({
          body: "",
@@ -37,9 +40,15 @@ function AddComment({onAddComment}) {
       }).catch((error) => {
         setError("Your comment was not added. Please check you are signed in!")
         setDisabled(false)
+        setIsLoading(false)
       });
     }
     }
+
+    if (isLoading) {
+      return <Loading />;
+    }
+  
 
   return (
     <div className="bg-base-200 collapse space-y-2 shadow-xl">

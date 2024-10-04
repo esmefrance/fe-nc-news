@@ -3,12 +3,10 @@ import { UserContext } from "../../context/User";
 import Loading from "../Loading";
 import { postArticle } from "../../api";
 import { useNavigate } from "react-router-dom";
-import Topics from "../AllArticles/Topics";
 
 function PostArticle() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const [topicSelected, setTopicSelected] = useState(null);
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -40,7 +38,6 @@ function PostArticle() {
       ...formData,
       author: user[0].username,
     };
-
     setIsLoading(true);
     postArticle(updatedFormData)
       .then((newArticle) => {
@@ -52,7 +49,6 @@ function PostArticle() {
         console.error(error);
         setIsLoading(false);
       });
-
     setFormData({
       title: "",
       body: "",
@@ -108,7 +104,7 @@ function PostArticle() {
                 -- Select a Topic --
               </option>
               {topicsArray.map((topic) => (
-                <option key={topic} value={topic}>
+                <option key={topic} >
                   {topic}
                 </option>
               ))}

@@ -19,12 +19,13 @@ function Comments({ commentCount, onUpdateCommentCount }) {
   const { user } = useContext(UserContext);
 
   useEffect(() => {
+    setIsLoading(true);
     getCommentsByArticleId(article_id)
       .then((data) => {
         setCommentList(data);
-        setIsLoading(false);
         onUpdateCommentCount(data.length);
-        fetchAuthors(data);
+        fetchAuthors(data)
+        setIsLoading(false);
       })
       .catch((error) => {
         setError("Error fetching comments");
@@ -60,16 +61,19 @@ function Comments({ commentCount, onUpdateCommentCount }) {
   };
 
   const deleteComment = (id) => {
-    setError(null);
+    setError(null)
+    setIsLoading(true);
     deleteCommentById(id)
       .then(() => {
         setCommentList((prevComments) =>
           prevComments.filter((comment) => comment.comment_id !== id)
         );
-        onUpdateCommentCount(commentList.length - 1);
+        onUpdateCommentCount(commentList.length - 1)
+        setIsLoading(false);
       })
       .catch((error) => {
-        setError("Error deleting comment");
+        setError("Error deleting comment")
+        setIsLoading(false);
       });
   };
 

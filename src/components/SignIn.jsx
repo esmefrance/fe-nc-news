@@ -6,7 +6,7 @@ import Loading from "./Loading";
 
 
 function SignIn() {
-  const { user, setUser } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
   const [signInUsername, setSignInUsername] = useState("");
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -57,7 +57,7 @@ function SignIn() {
             value={signInUsername}
             name="username"
             type="text"
-            placeholder="Type here"
+            placeholder="Enter your username"
             className="input input-bordered w-full max-w-xs"
           />
         </label>
@@ -67,7 +67,7 @@ function SignIn() {
             onClick={handleSubmitSignIn}
             type="submit"
             value="Sign in"
-            className="btn btn-secondary"
+            className="btn btn-accent"
           />
         </label>
       </form>
